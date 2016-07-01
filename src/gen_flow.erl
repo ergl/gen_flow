@@ -24,6 +24,7 @@
 %% API
 -export([start_link/1,
          start_link/2,
+         start_link/3,
          loop/3]).
 
 %% System message callbacks
@@ -67,6 +68,9 @@ start_link([Module, Args, MaxEvents]) ->
 %% @doc Provided for backwards compatibility.
 start_link(Module, Args) ->
     proc_lib:start_link(?MODULE, init, [self(), Module, Args]).
+
+start_link(Module, Args, MaxEvents) ->
+    proc_lib:start_link(?MODULE, init, [self(), Module, Args, MaxEvents]).
 
 %%%===================================================================
 %%% Callbacks
